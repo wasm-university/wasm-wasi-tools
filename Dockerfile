@@ -1,7 +1,23 @@
 FROM gitpod/workspace-dotnet
 
 RUN sudo apt-get update && \
-    sudo apt-get install gettext libncurses5 libxkbcommon0 libtinfo5 -y
+    sudo apt-get install gettext libncurses5 libxkbcommon0 libtinfo5 -y && \
+    sudo apt-get install \
+          binutils \
+          git \
+          gnupg2 \
+          libc6-dev \
+          libcurl4 \
+          libedit2 \
+          libgcc-9-dev \
+          libpython2.7 \
+          libsqlite3-0 \
+          libstdc++-9-dev \
+          libxml2 \
+          libz3-dev \
+          pkg-config \
+          tzdata \
+          zlib1g-dev -y
 
 USER gitpod
 
@@ -10,6 +26,17 @@ RUN brew install httpie && \
     brew install exa && \
     brew install hey && \
     brew install pv
+
+# ------------------------------------
+# Install Swift
+# ------------------------------------
+ARG SWIFT_VERSION="5.7.0"
+RUN cd $HOME
+RUN wget https://github.com/swiftwasm/swift/releases/download/swift-wasm-${SWIFT_VERSION}-RELEASE/swift-wasm-${SWIFT_VERSION}-RELEASE-ubuntu20.04_x86_64.tar.gz
+RUN tar xzf swift-wasm-${SWIFT_VERSION}-RELEASE-ubuntu20.04_x86_64.tar.gz
+RUN export PATH=$(pwd)/swift-wasm-${SWIFT_VERSION}-RELEASE/usr/bin:"${PATH}"
+RUN rm swift-wasm-${SWIFT_VERSION}-RELEASE-ubuntu20.04_x86_64.tar.gz
+
 
 # ------------------------------------
 # Install TinyGo

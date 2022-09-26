@@ -25,12 +25,13 @@ RUN brew install httpie && \
     brew install bat && \
     brew install exa && \
     brew install hey && \
-    brew install pv
+    brew install pv && \
+    brew install zellij
 
 # ------------------------------------
 # Install Swift
 # ------------------------------------
-ARG SWIFT_VERSION="5.7.0"
+ARG SWIFT_VERSION="5.6.0"
 RUN cd $HOME
 RUN wget https://github.com/swiftwasm/swift/releases/download/swift-wasm-${SWIFT_VERSION}-RELEASE/swift-wasm-${SWIFT_VERSION}-RELEASE-ubuntu20.04_x86_64.tar.gz
 RUN tar xzf swift-wasm-${SWIFT_VERSION}-RELEASE-ubuntu20.04_x86_64.tar.gz

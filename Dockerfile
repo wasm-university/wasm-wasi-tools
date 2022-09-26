@@ -128,3 +128,27 @@ RUN git clone --depth=1 https://github.com/suborbital/sat.git && \
     sudo cp .bin/sat /usr/local/bin/sat && \
     cd .. && \
     rm -rf sat
+
+# ------------------------------------
+# Install NATS server
+# ------------------------------------
+
+ARG NATS_VERSION="2.9.0"
+ARG NATS_OS="linux-amd64"
+RUN curl -L https://github.com/nats-io/nats-server/releases/download/v${NATS_VERSION}/nats-server-v${NATS_VERSION}-${NATS_OS}.zip -o nats-server.zip && \
+    unzip nats-server.zip -d nats-server && \
+    sudo cp nats-server/nats-server-v${NATS_VERSION}-${NATS_OS}/nats-server /usr/bin && \
+    rm nats-server.zip && \
+    rm -rf nats-server
+
+# ------------------------------------
+# Install Capsule
+# ------------------------------------
+ARG CAPSULE_VERSION="v0.2.5"
+ARG CAPSULE_OS="linux"
+ARG CAPSULE_ARCH="amd64"
+ARG CAPSULE_MODULE="capsule"
+
+RUN wget https://github.com/bots-garden/capsule/releases/download/${CAPSULE_VERSION}/${CAPSULE_MODULE}-${CAPSULE_VERSION}-${CAPSULE_OS}-${CAPSULE_ARCH}.tar.gz
+RUN sudo tar -zxf ${CAPSULE_MODULE}-${CAPSULE_VERSION}-${CAPSULE_OS}-${CAPSULE_ARCH}.tar.gz --directory /usr/local/bin
+RUN rm ${CAPSULE_MODULE}-${CAPSULE_VERSION}-${CAPSULE_OS}-${CAPSULE_ARCH}.tar.gz

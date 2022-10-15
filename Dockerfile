@@ -144,7 +144,7 @@ RUN curl -L https://github.com/nats-io/nats-server/releases/download/v${NATS_VER
 # ------------------------------------
 # Install Capsule
 # ------------------------------------
-ARG CAPSULE_VERSION="v0.2.5"
+ARG CAPSULE_VERSION="v0.2.8"
 ARG CAPSULE_OS="linux"
 ARG CAPSULE_ARCH="amd64"
 ARG CAPSULE_MODULE="capsule"
